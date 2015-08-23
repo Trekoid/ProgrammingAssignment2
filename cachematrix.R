@@ -15,22 +15,22 @@
 ## 4. get the value of the inverse matrix
 
 makeCacheMatrix <- function(x = matrix()) {
-  imatrix <- NULL
-  set <- function(y) {
-    x <<- y
-    imatrix <<- NULL
-  }
-  get <- function()
-    x
-  setInverse <- function(inverse)
-    imatrix <<- inverse
-  getInverse <- function()
-    imatrix
-  list(
-    set = set, get = get,
-    setInverse = setInverse,
-    getInverse = getInverse
-  )
+    imatrix <- NULL
+    set <- function(y) {
+        x <<- y
+        imatrix <<- NULL
+    }
+    get <- function()
+        x
+    setInverse <- function(inverse)
+        imatrix <<- inverse
+    getInverse <- function()
+        imatrix
+    list(
+        set = set, get = get,
+        setInverse = setInverse,
+        getInverse = getInverse
+    )
 }
 
 ## The cacheSolve function calculates the inverse of the special "matrix"
@@ -41,14 +41,14 @@ makeCacheMatrix <- function(x = matrix()) {
 ## in the cache via the setInverse function.
 
 cacheSolve <- function(x, ...) {
-  ## Return a matrix that is the inverse of 'x'
-  imatrix <- x$getInverse()
-  if (!is.null(imatrix)) {
-    message("getting cached inverse matrix")
-    return(imatrix)
-  }
-  data <- x$get()
-  imatrix <- solve(data, ...)
-  x$setInverse(imatrix)
-  imatrix
+    ## Return a matrix that is the inverse of 'x'
+    imatrix <- x$getInverse()
+    if (!is.null(imatrix)) {
+        message("getting cached inverse matrix")
+        return(imatrix)
+    }
+    data <- x$get()
+    imatrix <- solve(data, ...)
+    x$setInverse(imatrix)
+    imatrix
 }
